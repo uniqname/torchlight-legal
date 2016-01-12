@@ -193,6 +193,23 @@
             function qsa(sel) {
                 return [].slice.call(document.querySelectorAll(sel));
             }
+
+            function wireConditionalDisplay() {
+                var evalPredicate = function (field, val) {
+                    return !! qsa('[name="' + field + '""]')
+                        .every(function (field) {
+                            field.value === val;
+                        });
+                };
+
+                qsa('[data-conditional]')
+                    .filter(function (cond) {
+                        return evalPredicate(
+                            cond.getAttribute('data-conditional')
+                                .split(/\s*:\s*/)
+                            ),
+                    });
+            }
         })();
         </script>
     </body>
