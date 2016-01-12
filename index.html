@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Torchlight Legal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <style>
+            html {
+                box-sizing: border-box;
+            }
+
+            html *,
+            html *::after,
+            html *::before {
+                box-sizing: inherit;
+            }
+
+            body {
+                background: linear-gradient(0deg, #082337, #000);
+                background-attachment: fixed;
+                box-sizing: border-box;
+                color: #ccc;
+                font-family: sans-serif;
+                font-weight: 100;
+                margin: 0 auto;
+                padding: 0 2em;
+            }
+
+            section {
+                margin: 25vh auto;
+                max-width: 100%;
+                width: 40em;
+            }
+
+            fieldset {
+                border: none;
+            }
+
+            .field {
+                display: flex;
+                flex-flow: column wrap;
+                font-size: 1.4em;
+                margin-bottom: 1em;
+            }
+
+            .field__label {
+                text-align: left;
+                font-size: .6em;
+                padding: 0 1em 0 0;
+                color: #999;
+            }
+
+            .field__input {
+                font-size: 1em;
+                font-weight: 100;
+                padding: .5em;
+                background: hsla(0, 100%, 100%, .1);
+                border: none;
+                color: #ccc;
+                outline: none;
+            }
+
+            .field__input:focus {
+                border-bottom-color: #999;
+                border-bottom-width: .125em;
+            }
+
+            button,
+            .button {
+                border: none;
+                border-radius: .25em;
+                background-color: hsla(0, 100%, 100%, .25);
+                margin: 1em 0;
+                padding: 1em;
+            }
+
+            button:hover,
+            .button:hover {
+                background-color: hsla(0, 100%, 100%, .5);
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img alt="Torchlight Legal: Powered by legal.io" />
+        </header>
+        <section id="login">
+            <form class="login"
+                  action="https://torchlight.legal.io/login"
+                  method="post">
+
+                <label class="field">
+                    <span class="field__label">Email</span>
+                    <input type="email" class="field__input" />
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Password</span>
+                    <input type="password" class="field__input" />
+                </label>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <button type="button">Create An Account</button>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section id="register">
+            <form class="registration"
+                  action="https://torchlight.legal.io/users/"
+                  method="post"
+                  disabled>
+
+                <label class="field">
+                    <span class="field__label">Email</span>
+                    <input type="email" class="field__input" placeholder="e.g. superstar@beneficientlegal.org"/>
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Password</span>
+                    <input type="password" class="field__input" />
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Name</span>
+                    <input type="text" class="field__input" placeholder="e.g. Jennifer Gonzalez"/>
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Organizaiton</span>
+                    <input type="text" class="field__input" placeholder="e.g. Benficient Legal Services" />
+                </label>
+
+                <label class="field">
+                    <span class="field__label">Beta Code</span>
+                    <input type="text" class="field__input" placeholder="XXX-XXX"/>
+                </label>
+
+                <fieldset>
+                    <label class="field">
+                        <span class="field__label">Lead Attorney</span>
+                        <input type="radio" name="account_type" value="lead_attorney" class="field__input" />
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Volunteer</span>
+                        <input type="radio" name="account_type" value="volunteer" class="field__input" />
+                    </label>
+                </fieldset>
+
+                <fieldset data-conditional="account_type: volunteer">
+                    <label class="field">
+                        <span class="field__label">Language</span>
+                        <input type="checkbox" name="volunteer_type" value="language" class="field__input" />
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Country Research</span>
+                        <input type="checkbox" name="volunteer_type" value="country_research" class="field__input" />
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Legal Research</span>
+                        <input type="checkbox" name="volunteer_type" value="legal_research" class="field__input" />
+                    </label>
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="profile">
+            <form class="profile"
+                  action="https://torchlight.legal.io/users/<id>"
+                  method="post"
+                  disabled>
+
+            </form>
+        </section>
+
+        <script>
+        (function () {
+
+            window.addEventListener('DOMContentLoaded', function DCL() {
+
+                return function () {
+                    window.removeEventListener('DOMContentLoaded', DCL);
+                };
+            });
+
+            function qsa(sel) {
+                return [].slice.call(document.querySelectorAll(sel));
+            }
+        })();
+        </script>
+    </body>
+</html>
