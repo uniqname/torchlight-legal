@@ -6,7 +6,7 @@
         <title>Torchlight Legal</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
 
         <style>
             html {
@@ -28,12 +28,24 @@
                 font-weight: 100;
                 margin: 0 auto;
                 padding: 0 2em;
+                position: relative;
             }
 
             section {
-                margin: 25vh auto;
-                max-width: 100%;
+                margin: 0 auto;
+                max-width: 90vw;
+                padding: 25vh 0;
                 width: 40em;
+
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            section:target {
+                display: block;
             }
 
             fieldset {
@@ -62,11 +74,46 @@
                 border: none;
                 color: #ccc;
                 outline: none;
+                transition: all .2s ease-in-out;
             }
 
-            .field__input:focus {
-                border-bottom-color: #999;
-                border-bottom-width: .125em;
+            .field__input:focus,
+            .field__input:focus + .field__input--proxy {
+                background: hsla(0, 100%, 100%, .2);
+                transform: scale(1.01);
+            }
+
+            .field__input--radio {
+                border-radius: 100%;
+                background: radial-gradient(hsla(200, 100%, 100%, .1), 50%, hsla(200, 100%, 100%, .1), 50%, hsla(200, 100%, 100%, .1));
+                height: 1em;
+                width: 1em;
+            }
+
+            .field__input--checkbox {
+                border-radius: .25em;
+                height: 1em;
+                width: 1em;
+            }
+
+            .field__input--proxy {
+                margin: .25em 0;
+                position: relative;
+            }
+
+            .field__input[type="radio"]:checked + .field__input--proxy {
+                background: radial-gradient(hsla(200, 100%, 50%, .8), 50%, hsla(200, 100%, 50%, .8), 50%, hsla(200, 100%, 95%, .8));
+            }
+
+            .field__input[type="checkbox"]:checked + .field__input--proxy::before {
+                color: hsla(200, 100%, 50%, .8);
+                content: '\2713';
+                font-size: 1.4em;
+                left: 50%;
+                position: absolute;
+                text-shadow: 1px 0 0 hsla(200, 100%, 95%, .8), 0 1px 0 hsla(200, 100%, 95%, .8), -1px 0 0 hsla(200, 100%, 95%, .8), 0 -1px 0 hsla(200, 100%, 95%, .8);
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
 
             button,
@@ -74,14 +121,33 @@
                 border: none;
                 border-radius: .25em;
                 background-color: hsla(0, 100%, 100%, .25);
+                color: currentcolor;
+                display: inline-block;
+                font-size: 1em;
                 margin: 1em 0;
                 padding: 1em;
+                text-decoration: none;
+                transition: all .2s ease-in-out;
             }
 
             button:hover,
             .button:hover {
                 background-color: hsla(0, 100%, 100%, .5);
                 cursor: pointer;
+            }
+
+            .hidden {
+                position: absolute;
+                left: -120vw;
+            }
+
+            .subserviant {
+                display: flex;
+                flex-flow: row wrap;
+            }
+
+            .subserviant > * {
+                /*display: inline-flex;*/
             }
         </style>
     </head>
@@ -107,7 +173,7 @@
                 <button type="submit">Login</button>
             </form>
 
-            <button type="button">Create An Account</button>
+            <a href="#register" class="button">Create An Account</a>
 
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </section>
@@ -146,29 +212,40 @@
                 <fieldset>
                     <label class="field">
                         <span class="field__label">Lead Attorney</span>
-                        <input type="radio" name="account_type" value="lead_attorney" class="field__input" />
+                        <input type="radio" name="account_type" value="lead_attorney" class="field__input hidden" />
+                        <span class="field__input field__input--proxy field__input--radio"></span>
                     </label>
                     <label class="field">
                         <span class="field__label">Volunteer</span>
-                        <input type="radio" name="account_type" value="volunteer" class="field__input" />
+                        <input type="radio" name="account_type" value="volunteer" class="field__input hidden" />
+                        <span class="field__input field__input--radio field__input--proxy"></span>
                     </label>
                 </fieldset>
 
-                <fieldset data-conditional="account_type: volunteer">
+                <fieldset class="subserviant" data-conditional-on="account_type" data-conditional-when="volunteer">
                     <label class="field">
                         <span class="field__label">Language</span>
-                        <input type="checkbox" name="volunteer_type" value="language" class="field__input" />
+                        <input type="checkbox" name="volunteer_type" value="language" class="field__input hidden" />
+                        <span class="field__input field__input--checkbox field__input--proxy"></span>
                     </label>
+
                     <label class="field">
                         <span class="field__label">Country Research</span>
-                        <input type="checkbox" name="volunteer_type" value="country_research" class="field__input" />
+                        <input type="checkbox" name="volunteer_type" value="country_research" class="field__input hidden" />
+                        <span class="field__input field__input--checkbox field__input--proxy"></span>
                     </label>
+
                     <label class="field">
                         <span class="field__label">Legal Research</span>
-                        <input type="checkbox" name="volunteer_type" value="legal_research" class="field__input" />
+                        <input type="checkbox" name="volunteer_type" value="legal_research" class="field__input hidden" />
+                        <span class="field__input field__input--checkbox field__input--proxy"></span>
                     </label>
                 </fieldset>
+                <!-- <button type="submit">Register</button> -->
+                <a href="#profile" class="button">Register</a>
             </form>
+            <a href="#login" class="button">Login</a>
+
         </section>
 
         <section id="profile">
@@ -178,12 +255,35 @@
                   disabled>
 
             </form>
+            <a href="#login" class="button">Login</a>
         </section>
 
         <script>
         (function () {
 
             window.addEventListener('DOMContentLoaded', function DCL() {
+                qsa('[data-conditional-on]')
+                    .map(function (el) {
+                        [].slice.call(
+                            el.form.elements[el.getAttribute('data-conditional-on')]
+                        ).map(function (elem) {
+                            var showOrHide = function (target) {
+                                var fieldHasMatchingValue = valueMatchesField(
+                                    el.getAttribute('data-conditional-when')
+                                )
+
+                                fieldHasMatchingValue(target) ?
+                                    show(el) :
+                                    hide(el);
+                            };
+                            on('change')(function (evt) {
+                                showOrHide(evt.target);
+                            })(elem);
+                            showOrHide(elem);
+                        })
+                    });
+
+                window.location.hash = window.location.hash || 'login';
 
                 return function () {
                     window.removeEventListener('DOMContentLoaded', DCL);
@@ -194,21 +294,39 @@
                 return [].slice.call(document.querySelectorAll(sel));
             }
 
-            function wireConditionalDisplay() {
-                var evalPredicate = function (field, val) {
-                    return !! qsa('[name="' + field + '""]')
-                        .every(function (field) {
-                            field.value === val;
-                        });
-                };
+            function hide(el) {
+                el.classList.add('hidden');
+                return el;
+            };
 
-                qsa('[data-conditional]')
-                    .filter(function (cond) {
-                        return evalPredicate(
-                            cond.getAttribute('data-conditional')
-                                .split(/\s*:\s*/)
-                            ),
-                    });
+            function show(el) {
+                el.classList.remove('hidden');
+                return el;
+            }
+
+            function on (evt) {
+                return function (cb) {
+                    return function (context) {
+                        context = context || document;
+                        context = Array.isArray(context) ? context : [context];
+                        context.map(function (el) {
+                            el.addEventListener(evt, off);
+                        });
+                        return function () {
+                            context.removeEventListener(evt, off);
+                        };
+
+                        function off(evt) {
+                            cb(evt);
+                        }
+                    };
+                };
+            }
+
+            function valueMatchesField(value) {
+                return function (el) {
+                    return el.form.elements[el.name].value === value;
+                };
             }
         })();
         </script>
