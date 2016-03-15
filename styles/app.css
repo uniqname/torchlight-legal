@@ -1,0 +1,182 @@
+html {
+    box-sizing: border-box;
+}
+
+html *,
+html *::after,
+html *::before {
+    box-sizing: inherit;
+}
+
+body {
+    background: linear-gradient(0deg, #082337, #000);
+    background-attachment: fixed;
+    box-sizing: border-box;
+    color: #ccc;
+    font-family: sans-serif;
+    font-weight: 100;
+    margin: 0 auto;
+    padding: 0 2em;
+    position: relative;
+    height: 100vh;
+    padding-bottom: 3em;
+}
+
+a {
+    color: inherit;
+}
+
+section {
+    margin: 0 auto;
+    max-width: 90vw;
+    padding: 10vh 0;
+    width: 40em;
+}
+
+section:target {
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+form > * {
+    flex: 0 0 100%;
+}
+
+fieldset {
+    border: none;
+    border-top: 1px solid hsla(0, 100%, 100%, .2);
+    padding: 1em 0;
+    flex: 0 0 44%;
+}
+
+legend {
+    padding: 0 2em 0 0;
+}
+
+.field {
+    display: flex;
+    flex: 0 0 100%;
+    flex-flow: column wrap;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+}
+
+.field__label {
+    text-align: left;
+    font-size: .6em;
+    padding: 0 1em 0 0;
+    color: #999;
+}
+
+.field__input {
+    font-size: 1em;
+    font-weight: 100;
+    padding: .5em;
+    background: hsla(0, 100%, 100%, .1);
+    border: none;
+    color: #ccc;
+    outline: none;
+    transition: all .2s ease-in-out;
+}
+
+.field__input:focus,
+.field__input:focus + .field__input--proxy {
+    background: hsla(0, 100%, 100%, .2);
+    transform: scale(1.01);
+}
+
+.field__input--radio {
+    border-radius: 100%;
+    background: radial-gradient(hsla(200, 100%, 100%, .1), 50%, hsla(200, 100%, 100%, .1), 50%, hsla(200, 100%, 100%, .1));
+    height: 1em;
+    width: 1em;
+}
+
+.field__input--checkbox {
+    border-radius: .25em;
+    height: 1em;
+    width: 1em;
+}
+
+.field__input--proxy {
+    margin: .25em 0;
+    position: relative;
+}
+
+.field__input[type="radio"]:checked + .field__input--proxy {
+    background: radial-gradient(hsla(200, 100%, 50%, .8), 50%, hsla(200, 100%, 50%, .8), 50%, hsla(200, 100%, 95%, .8));
+}
+
+.field__input[type="checkbox"]:checked + .field__input--proxy::before {
+    color: hsla(200, 100%, 50%, .8);
+    content: '\2713';
+    font-size: 1.4em;
+    left: 50%;
+    position: absolute;
+    text-shadow: 1px 0 0 hsla(200, 100%, 95%, .8), 0 1px 0 hsla(200, 100%, 95%, .8), -1px 0 0 hsla(200, 100%, 95%, .8), 0 -1px 0 hsla(200, 100%, 95%, .8);
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-group {
+    flex: 0 0 100%;
+}
+
+button,
+.button {
+    border: none;
+    border-radius: .25em;
+    background-color: hsla(0, 100%, 100%, .25);
+    color: currentcolor;
+    display: inline-block;
+    font-size: 1em;
+    margin: 1em 0;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    align-self: baseline;
+}
+
+button:hover,
+.button:hover {
+    background-color: hsla(0, 100%, 100%, .5);
+    cursor: pointer;
+}
+
+.hidden {
+    position: absolute;
+    left: -120vw;
+}
+
+.subserviant {
+    /*display: flex;*/
+    /*flex-flow: row wrap;*/
+}
+
+.subserviant > .field {
+    display: flex;
+    flex-flow: row-reverse;;
+    flex: 1 1 auto;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    color: #999;
+    border-top: 1px solid hsla(206, 25%, 24%, 1);
+    font-size: .8em;
+    font-weight: inherit;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: block;
+    padding: 1em 0;
+    background: hsla(206, 75%, 12%, 1);
+    width: 100%;
+}
